@@ -31,18 +31,22 @@ public:
 			for (int y = 0; y < ScreenHeight(); y++) {
 				int value = (x + y) / (float)(ScreenWidth() + ScreenHeight()) * 255;
 				//Draw(x, y, olc::Pixel(x / (float)ScreenWidth() * 255, y / (float)ScreenHeight() * 255, 0));
-				auto world_coords = tv.screen_to_world(olc::vf2d(x, y));
+				//auto world_coords = tv.screen_to_world(olc::vf2d(x, y));
+				float world_x = x / (float)ScreenWidth() * 5 - 2.5;
+				float world_y = y / (float)ScreenHeight() * 5 - 2.5;
 				//std::cout << world_coords.str() << '\n';
-				Complex z(world_coords.x, world_coords.y);
+				Complex z(world_x, world_y);
 
 				// Equation
 				// (2*z + 5) / (5*z - 3)
 				Complex res = (z * 2 + 5) / (z * 5 - 3);
-				//std::cout << res.str() << '\n';
+				std::cout << res.str() << '\n';
 
-				auto screen_coords = tv.world_to_screen(olc::vf2d(res.real, res.imag));
+				//auto screen_coords = tv.world_to_screen(olc::vf2d(res.real, res.imag));
+				float screen_x = (world_x + 2.5) / 5 * ScreenWidth();
+				float screen_y = (world_y + 2.5) / 5 * ScreenHeight();
 
-				Draw(screen_coords, olc::Pixel(0, value, 0));
+				Draw(screen_x, screen_y, olc::Pixel(0, value, 0));
 			}
 		}
 		return true;
