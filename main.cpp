@@ -22,7 +22,7 @@ public:
 	{
 		// Called once at the start, so create things here
 		tv.scale = 0.01;
-		tv.zoom_sens = 0.001;
+		tv.zoom_sens = 0.0001;
 		return true;
 	}
 
@@ -43,7 +43,7 @@ public:
 		}
 		prev_mouse = GetMousePos();
 
-		for (int x = 0; x < ScreenWidth(); x += 20) {
+		for (int x = 0; x < ScreenWidth(); x +=1) {
 			for (int y = 0; y < ScreenHeight(); y++) {
 				int value = (x + y) / (float)(ScreenWidth() + ScreenHeight()) * 255;
 				//Draw(x, y, olc::Pixel(x / (float)ScreenWidth() * 255, y / (float)ScreenHeight() * 255, 0));
@@ -52,7 +52,8 @@ public:
 				Complex z(world_coords.x, world_coords.y);
 
 				// Equation
-				// (2*z + 5) / (5*z - 3)
+				// y = (2*x + 5) / (5*x - 3)
+				// x = (2*y + 5) / (5*y - 3)
 				Complex res = (z * 2 + 5) / (z * 5 - 3);
 				//std::cout << res.str() << '\n';
 
@@ -60,7 +61,7 @@ public:
 				//std::cout << "s " << screen_coords.str() << '\n';
 
 				//Draw(screen_x, screen_y, olc::Pixel(0, value, 0));
-				Draw(screen_coords, olc::Pixel(x / (float)ScreenWidth() * 255, y / (float)ScreenHeight() * 255, 0));
+				Draw(x,y, olc::Pixel(screen_coords.x / (float)ScreenWidth() * 255, screen_coords.y / (float)ScreenHeight() * 255, 0));
 			}
 		}
 		return true;
