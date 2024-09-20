@@ -23,5 +23,11 @@
     <ClInclude Include="olcPixelGameEngine.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="transformed_view.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="complex.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
