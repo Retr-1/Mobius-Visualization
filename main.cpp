@@ -27,7 +27,7 @@ public:
 	{
 		// Called once per frame, draws random coloured pixels
 		//std::vector<std::vector<int>>  
-		for (int x = 0; x < ScreenWidth(); x++) {
+		for (int x = 0; x < ScreenWidth(); x += 20) {
 			for (int y = 0; y < ScreenHeight(); y++) {
 				int value = (x + y) / (float)(ScreenWidth() + ScreenHeight()) * 255;
 				//Draw(x, y, olc::Pixel(x / (float)ScreenWidth() * 255, y / (float)ScreenHeight() * 255, 0));
@@ -39,14 +39,15 @@ public:
 
 				// Equation
 				// (2*z + 5) / (5*z - 3)
-				Complex res = (z * 2 + 5) / (z * 5 - 3);
-				std::cout << res.str() << '\n';
+				Complex res = (z * 2 + 5) / (z * 5 + 3);
+				//std::cout << res.str() << '\n';
 
 				//auto screen_coords = tv.world_to_screen(olc::vf2d(res.real, res.imag));
-				float screen_x = (world_x + 2.5) / 5 * ScreenWidth();
-				float screen_y = (world_y + 2.5) / 5 * ScreenHeight();
+				float screen_x = (res.real + 2.5) / 5 * ScreenWidth();
+				float screen_y = (res.imag + 2.5) / 5 * ScreenHeight();
 
-				Draw(screen_x, screen_y, olc::Pixel(0, value, 0));
+				//Draw(screen_x, screen_y, olc::Pixel(0, value, 0));
+				Draw(screen_x, screen_y, olc::Pixel(x / (float)ScreenWidth() * 255, y / (float)ScreenHeight() * 255, 0));
 			}
 		}
 		return true;
